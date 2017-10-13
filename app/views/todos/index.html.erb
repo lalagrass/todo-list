@@ -2,8 +2,11 @@
  <% @todos.each do |todo| %>
    <li>
      <%= todo.description %>
+     <%= todo.datetime_create.localtime %>
+     <%= todo.priority %>
+     <%= todo.done %>
      <%= link_to 'Edit', edit_todo_path(todo) %>
-     <%= link_to 'Destroy', photo_path(todo), method: :delete, data:{ confirm: "Are you sure?" } %>
+     <%= link_to 'Destroy', todo_path(todo), method: :delete, data:{ confirm: "Are you sure?" } %>
    </li>
  <% end %>
 </ul>
