@@ -5,8 +5,8 @@ class Todo < ApplicationRecord
 
 
   def set_defaults
-    self.priority = 1
-    self.done = false
-    self.datetime_create = DateTime.current
+    self.priority ||= 1
+    self.done ||= false
+    self.datetime_create ||= DateTime.current
   end
 end
