@@ -9,9 +9,11 @@ class TodosController < ApplicationController
 
   def create
     @todo = Todo.new(todo_params)
-    @todo.save
-
-    redirect_to todos_url
+    if @todo.save
+      redirect_to todos_url
+    else
+      render :action => :new
+    end
   end
 
   def edit
@@ -20,9 +22,11 @@ class TodosController < ApplicationController
 
   def update
     @todo = Todo.find(params[:id])
-    @todo.update_attributes(todo_params)
-
-    redirect_to todos_url
+    if @todo.update_attributes(todo_params)
+      redirect_to todos_url
+    else
+      render :action => :edit
+    end
   end
 
   def destroy
