@@ -1,12 +1,23 @@
-<%= form_for @todo do |f| %>
-  <%= f.label :datetime_create, "Date" %>
-  <%= f.text_field :datetime_create, :value => (@todo.datetime_create.localtime) %>
-
-  <%= f.label :description, "Description" %>
-  <%= f.text_area :description %>
-
-  <%= f.label :priority, "Priority" %>
-  <%= f.collection_radio_buttons :priority, Todo::priorities, :first, :first %>
-
-  <%= f.submit %>
-<% end %>
+<div class="form container">
+  <%= form_for @todo do |f| %>
+    <div class="form-group">
+      <%= f.label :priority, "Priority" %>
+      <%= f.collection_radio_buttons :priority, Todo::priorities, :first, :first, class: "radio-inline" do |b| %>
+        <div class="radio-inline">
+          <%= b.label do %>
+            <%= b.radio_button + b.text %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description, "Description" %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :datetime_create, "Date" %>
+      <%= f.text_field :datetime_create, :value => (@todo.datetime_create.localtime), class: "form-control" %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>

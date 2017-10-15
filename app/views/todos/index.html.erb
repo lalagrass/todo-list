@@ -1,14 +1,14 @@
-<ul>
+<table class="table table-striped table-condensed">
  <% @todos.each do |todo| %>
-   <li>
-     <%= todo.description %>
-     <%= todo.datetime_create.localtime %>
-     <%= todo.priority %>
-     <%= todo.done %>
-     <%= link_to 'Edit', edit_todo_path(todo) %>
-     <%= link_to 'Destroy', todo_path(todo), method: :delete, data:{ confirm: "Are you sure?" } %>
-   </li>
+   <tr>
+     <td><%= todo.description %></td>
+     <td><%= todo.datetime_create.localtime %></td>
+     <td><%= todo.priority %></td>
+     <td><%= todo.done %></td>
+     <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
+     <td><%= link_to 'Destroy', todo_path(todo), method: :delete, data:{ confirm: "Are you sure?" } %></td>
+   </tr>
  <% end %>
-</ul>
+</table>
 
 <%= link_to 'New Todo', new_todo_path %>
