@@ -1,14 +1,22 @@
-<table class="table table-striped table-condensed">
- <% @todos.each do |todo| %>
-   <tr>
-     <td><%= todo.description %></td>
-     <td><%= todo.datetime_create.localtime %></td>
-     <td><%= todo.priority %></td>
-     <td><%= todo.done %></td>
-     <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-     <td><%= link_to 'Destroy', todo_path(todo), method: :delete, data:{ confirm: "Are you sure?" } %></td>
-   </tr>
- <% end %>
-</table>
+<div class="container">
+  <div class="panel-group">
+    <% @todos.each do |todo| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span class="badge"><%= todo.priority %></span>
+          <div class="pull-right">
+            <%= todo.datetime_create.localtime %>
+            <%= link_to 'Edit', edit_todo_path(todo) %>
+            <%= link_to 'Destroy', todo_path(todo), method: :delete, data:{ confirm: "Are you sure?" } %>
+          </div>
+        </div>
+        <div class="panel-body">
+          <input type="checkbox" name="fancy-checkbox-default" autocomplete="off" />
+          <%= todo.description %>
+        </div>
+      </div>
+   <% end %>
+  </div>
+</div>
 
 <%= link_to 'New Todo', new_todo_path %>
