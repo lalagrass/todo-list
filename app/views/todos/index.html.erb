@@ -1,3 +1,8 @@
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  New Todo
+</button>
+
 <div class="container">
   <div class="panel-group">
     <% @todos.each do |todo| %>
@@ -19,4 +24,30 @@
   </div>
 </div>
 
-<%= link_to 'New Todo', new_todo_path %>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form container">
+          <%= form_for @todo do |f| %>
+            <div class="form-group">
+              <%= f.label :priority, "Priority" %>
+              <%= f.collection_radio_buttons :priority, Todo::priorities, :first, :first, class: "radio-inline" do |b| %>
+                <div class="radio-inline">
+                  <%= b.label do %>
+                    <%= b.radio_button + b.text %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="form-group">
+              <%= f.text_area :description, :placeholder => "Todo", class: "form-control" %>
+            </div>
+            <%= f.submit class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,8 +1,9 @@
 class TodosController < ApplicationController
-  before_action :set_todo, :only => [:edit, :update, :destroy]
+  before_action :set_todo, :only => [:edit, :options, :update, :destroy]
 
   def index
     @todos = Todo.all
+    @todo = Todo.new
   end
 
   def new
@@ -11,6 +12,7 @@ class TodosController < ApplicationController
 
   def create
     @todo = Todo.new(todo_params)
+    @todo.datetime_create ||= DateTime.current
     if @todo.save
       redirect_to todos_url
     else
@@ -19,6 +21,9 @@ class TodosController < ApplicationController
   end
 
   def edit
+  end
+
+  def options
   end
 
   def update
